@@ -1,0 +1,48 @@
+name: 自动部署
+
+on:
+  push:
+    branches:
+      - main 
+
+  release:
+    types:
+      - published
+
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 检查分支
+      uses: actions/checkout@main
+      with:
+        ref: main
+
+    - name: 安装 Node
+      uses: actions/setup-node@main
+      with:
+        node-version: "22.17.0"
+
+    - name: 安装依赖
+      run: |
+        yarn install
+
+    - name: 编译
+      run: |
+        yarn run build
+
+    - name: 部署
+      run: |
+        cd ./apps/web/build
+        git init
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add .
+        git commit -m "${{ github.event.head_commit.message }}··[$(date +"%Z %Y-%m-%d %A %H:%M:%S")]"
+        git push --force --quiet "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" master:refs/heads/web
+
