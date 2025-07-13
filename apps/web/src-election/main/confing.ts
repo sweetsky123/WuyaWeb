@@ -1,6 +1,6 @@
 const TSDD_FONFIG = {
-  appId: "com.tsdaodao.im",
-  name: "唐僧叨叨",
+  appId: "com.butterfly.im",
+  name: "Butterfly",
   updataUrl: 'https://api.botgate.cn/'
 };
 

@@ -1,7 +1,7 @@
 module.exports = {
-  productName: "TangSengDaoDao", //项目名
-  appId: "com.xinbida.macapp",
-  copyright: "Copyright © ShangHaiXinBiDa", //版权
+  productName: "Wuya", //项目名
+  appId: "com.wuya.macapp",
+  copyright: "Copyright © FuJianXiHua", //版权
   directories: {
     output: "dist-ele", // 输出文件夹
   },
@@ -69,7 +69,7 @@ module.exports = {
     // installerHeaderIcon: "./build/icon.ico", // 安装时头部图标
     createDesktopShortcut: true, // 创建桌面图标
     createStartMenuShortcut: true, // 创建开始菜单图标
-    shortcutName: "唐僧叨叨", // 图标名称
+    shortcutName: "Butterfly", // 图标名称
   },
   linux: {
     target: ["AppImage", "deb"],
